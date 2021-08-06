@@ -8,4 +8,34 @@
 body {
   background-color: lightgray;
 }
+
+.booklist {
+  width: 90vw;
+  max-width: 500px;
+  display: -ms-grid;
+  display: grid;
+  gap: 2em;
+}
+
+.book {
+  background-color: gray;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+}
+
+.book h3 {
+  margin-top: .5rem;
+}
+
+.book h4 {
+  margin-top: .25rem;
+  color: #222;
+}
+
+@media screen and (min-width: 768px) {
+  .booklist {
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+}
 /*# sourceMappingURL=index.css.map */
