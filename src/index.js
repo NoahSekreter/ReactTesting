@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // Don't forget the './' for retrieving items in the same location as this file
 import './index.css';
+// The 'export' keyword before a function lets you do this. Don't forget, you don't need the .js extension when importing JS
+import { book_collection } from './books';
+import Book from './Book';
 
 // JSX Rules
 // A function should always return a single HTML element, not multiple. Do note that the element can be nested
@@ -9,25 +12,6 @@ import './index.css';
 // Always use camelCase, and the functions should start with a capital letter
 // className instead of class for HTML elements
 // A closing tag for every element is necessary
-
-// // Random test variables
-// const title = "Dracula"
-// const author = "Bram Stoker"
-// img = 'https://youngentertainmentmag.com/wp-content/uploads/2015/09/dracula-book-cover-e1368750274302.jpg'
-
-const books = [{
-  title: 'Dracula',
-  author: 'Bram Stoker',
-  img: 'https://youngentertainmentmag.com/wp-content/uploads/2015/09/dracula-book-cover-e1368750274302.jpg'
-}, {
-  title: 'Pride and Prejudice',
-  author: 'Jane Austen',
-  img: 'https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781499806250/pride-and-prejudice-9781499806250_hr.jpg'
-}, {
-  title: 'The Jewish-Japanese Sex & Cookbook and How to Raise Wolves',
-  author: 'Jack Douglas',
-  img: 'https://images-na.ssl-images-amazon.com/images/I/51XS6q8o0ML._SX218_BO1,204,203,200_QL40_.jpg'
-}]
 
 // const firstBook = {
 //   title: 'Dracula',
@@ -43,11 +27,15 @@ const books = [{
 
 function BookList() {
   // The books.map is how you run through an array in jsx
+  // Anything in curly brackets is a snippet of jsx
+  // Turns out you can have multiple returns in a function, such as below for the section and then each of the books
   return (
     <section className="booklist">
-      {books.map((book) => {
+      {book_collection.map((book) => {
         // const { title, author, img } = book;
-        return <Book book={book}></Book>;
+        // return <Book key={book.id} book={book}></Book>;
+        // the {...book} section will take every variable from the object and factor it into the class. Props becomes an object
+        return <Book key={book.id} {...book}></Book>;
       })}
       {/* <Book title={firstBook.title} author={firstBook.author} img={firstBook.img}>
         <p>lorem ipsum</p>
@@ -61,21 +49,6 @@ function BookList() {
       <Book title='Pride and Prejudice' author='Jane Austen' img={secondBook.img} /> */}
     </section>
   );
-}
-
-// You can put in { title, author, img } in place of props to get the same results as the const below
-// You can place anything within an object by placing the "children" variable
-const Book = (props) => {
-  // console.log(props)
-  // When returning javascript, use {} to write functions into it.
-  // This below saves us the trouble of putting in "props." before every variable
-  const { title, author, img, children } = props.book
-  return <article className="book">
-    <img src={img} alt={title + ', by ' + author} width="200px" />
-    <h3>{title}</h3>
-    <h4>{author}</h4>
-    {children}
-  </article>
 }
 
 // // Implicit functions, using = () => variable. This does not use the return keyword
